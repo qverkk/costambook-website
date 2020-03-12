@@ -1,3 +1,13 @@
-.login-link {
+.login-button {
     text-decoration: none;
+}
+
+@media only screen and (max-width: 480px) {
+    .login-button {
+        font-size: 10px;
+    }
+
+    .register-button {
+        font-size: 10px;
+    }
 }

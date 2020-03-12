@@ -10,7 +10,8 @@ const router = new Router({
     routes: [{
             path: "/login",
             component: login,
-            name: "login"
+            name: "login",
+            props: true
         },
         {
             path: "/register",

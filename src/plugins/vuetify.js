@@ -13,7 +13,8 @@ import Vuetify, {
     VCardActions,
     VSpacer,
     VBtn,
-    VApp
+    VApp,
+    VAlert
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -31,7 +32,8 @@ Vue.use(Vuetify, {
         VCardActions,
         VSpacer,
         VBtn,
-        VApp
+        VApp,
+        VAlert
     }
 });
 

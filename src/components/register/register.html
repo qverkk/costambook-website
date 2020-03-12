@@ -1,27 +1,38 @@
 <v-content>
   <v-container fluid fill-height>
     <v-layout align-center justify-center>
-      <v-flex xs12 sm8 md8>
+      <v-flex xs12 sm8 md6>
         <v-card class="elevation-12">
           <v-toolbar color="primary" dark flat>
             <v-toolbar-title>Register form</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
             <v-form>
-              <v-text-field v-model="username" label="Login" name="login" prepend-icon="person" type="text">
-              </v-text-field>
-
-              <v-text-field v-model="password" id="password" label="Password" name="password" prepend-icon="lock"
-                type="password">
-              </v-text-field>
+              <v-text-field v-model="firstName" label="First name" name="firstname" type="text" counter maxlength="30"
+                :rules="[rules.required]" />
+              <v-text-field v-model="lastName" label="Last name" name="lastname" type="text" counter maxlength="30"
+                :rules="[rules.required]" />
+              <v-text-field v-model="username" label="Username" name="username" prepend-icon="person" type="text"
+                :rules="[rules.required]" />
+              <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" v-model="password" id="password"
+                label="Password" name="password" prepend-icon="lock" counter minlength="8" maxlength="50"
+                :type="show1 ? 'text' : 'password'" :rules="[rules.required, rules.passwordMin]"
+                @click:append="show1 = !show1" />
+              <v-text-field :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" v-model="repeatpassword"
+                id="repeatpassword" label="Repeat password" name="password" counter
+                :rules="[rules.repearPasswordMatches]" minlength="8" maxlength="50" prepend-icon="lock"
+                :type="show2 ? 'text' : 'password'" @click:append="show2 = !show2" />
+              <v-alert type="error" :value="userExists">
+                User already exists
+              </v-alert>
             </v-form>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <router-link to="login" class="login-link">
-              <v-btn color="secondary">Already have an account?</v-btn>
+            <router-link to="login">
+              <v-btn color="secondary" class="login-button">Already have an account?</v-btn>
             </router-link>
-            <v-btn color="primary" v-on:click="register()">Register</v-btn>
+            <v-btn color="primary" v-on:click="register()" class="register-button">Register</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
