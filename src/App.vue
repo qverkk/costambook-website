@@ -36,7 +36,7 @@ export default {
   components: {},
 
   data: () => ({
-    drawer: null
+    drawer: false
   })
 };
 </script>
