@@ -1,0 +1,23 @@
+<v-container fluid fill-height>
+  <v-layout align-center justify-center>
+    <v-flex xs12 sm8 md6>
+      <v-card class="elevation-12">
+        <v-toolbar color="secondary" dark flat>
+          <v-toolbar-title>New post</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text>
+          <v-form>
+            <v-textarea outlined v-model="description" label="New post description" />
+            <v-file-input v-model="choosenFile" accept="image/png, image/jpeg" :rules="rules.image"
+              prepend-icon="mdi-camera" label="Image input" filled counter :show-size="1000" />
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn block @click="createPost">
+            Create
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</v-container>

@@ -3,10 +3,13 @@ import {
 } from "../../store/actions/auth"
 // import router from "../../router/index"
 import store from "../../store"
+import NewPost from "../NewPost"
 
 export default {
   name: 'home',
-  components: {},
+  components: {
+    NewPost
+  },
   props: [],
   data() {
     return {

@@ -14,7 +14,9 @@ import Vuetify, {
     VSpacer,
     VBtn,
     VApp,
-    VAlert
+    VAlert,
+    VTextarea,
+    VFileInput
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -33,7 +35,9 @@ Vue.use(Vuetify, {
         VSpacer,
         VBtn,
         VApp,
-        VAlert
+        VAlert,
+        VTextarea,
+        VFileInput
     }
 });
 
