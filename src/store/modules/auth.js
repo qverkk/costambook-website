@@ -36,10 +36,13 @@ const actions = {
                     }
                 })
                 .then((resp) => {
-                    console.log(resp);
                     const token = resp.data.token
-                    localStorage.setItem("user-token", token) // store the token in localstorage
-                    commit(AUTH_SUCCESS, token)
+                    if (token) {
+                        localStorage.setItem("user-token", token) // store the token in localstorage
+                        commit(AUTH_SUCCESS, token)
+                    } else {
+                        commit(AUTH_ERROR);
+                    }
                     // you have your token, now log in your user :)
                     // dispatch(USER_REQUEST)
                     resolve(resp)

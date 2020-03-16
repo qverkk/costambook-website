@@ -27,17 +27,23 @@ export default {
   },
   methods: {
     login() {
-      //let self = this;
+      let self = this;
       let data = JSON.stringify({
         username: this.username,
         password: this.password
       });
 
       store.dispatch(AUTH_REQUEST, data)
-        .then(() => {
-          router.replace({
-            name: "home"
-          })
+        .then((response) => {
+          if (response.data == "User doesn't exist") {
+            self.userExists = false;
+          } else if (response.data == "Password doesn't match") {
+            self.passwordDoesntMatch = true;
+          } else {
+            router.replace({
+              name: "home"
+            })
+          }
         });
       /*axios
         .post("http://localhost:8090/user/login", data, {

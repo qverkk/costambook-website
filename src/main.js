@@ -8,7 +8,6 @@ import "material-design-icons-iconfont/dist/material-design-icons.css";
 Vue.config.productionTip = false;
 
 const token = localStorage.getItem("user-token");
-console.log(token);
 if (token) {
   axios.defaults.headers.common['Authorization'] = token;
 
@@ -19,7 +18,9 @@ if (token) {
       }
     })
     .then((response) => {
-      console.log(response);
+      if (!response.data) {
+        localStorage.removeItem("user-token");
+      }
     })
     .catch((response) => {
       localStorage.removeItem("user-token");
