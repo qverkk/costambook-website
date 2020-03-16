@@ -23,6 +23,18 @@
           <v-btn>Costambook</v-btn>
         </router-link>
       </v-toolbar-title>
+      <v-spacer />
+      <div v-if="!authenticated">
+        <router-link to="login">
+          <v-btn>Login</v-btn>
+        </router-link>
+        <router-link to="register">
+          <v-btn>Register</v-btn>
+        </router-link>
+      </div>
+      <div v-else>
+        <v-btn @click="logout">Logout</v-btn>
+      </div>
     </v-app-bar>
 
     <div role="main">
@@ -32,6 +44,9 @@
 </template>
 
 <script>
+import store from "./store";
+import { AUTH_LOGOUT } from "./store/actions/auth";
+
 export default {
   name: "App",
 
@@ -39,7 +54,17 @@ export default {
 
   data: () => ({
     drawer: false
-  })
+  }),
+  computed: {
+    authenticated() {
+      return store.getters.isAuthenticated;
+    }
+  },
+  methods: {
+    logout: function() {
+      store.dispatch(AUTH_LOGOUT);
+    }
+  }
 };
 </script>
 
