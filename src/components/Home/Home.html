@@ -1,14 +1,21 @@
 <v-content>
   <v-app>
-    <div class="login-block">
-      <router-link to="login">
-        <v-btn color="primary" block>Login</v-btn>
-      </router-link>
+    <div v-if="!authenticated">
+      <div class="login-block">
+        <router-link to="login">
+          <v-btn color="primary" block>Login</v-btn>
+        </router-link>
+      </div>
+      <div class="register-block">
+        <router-link to="register">
+          <v-btn color="primary" block>Register</v-btn>
+        </router-link>
+      </div>
     </div>
-    <div class="register-block">
-      <router-link to="register">
-        <v-btn color="primary" block>Register</v-btn>
-      </router-link>
+    <div v-else>
+      <v-btn @click="logout()" color="primary" block>
+        Logout
+      </v-btn>
     </div>
   </v-app>
 </v-content>

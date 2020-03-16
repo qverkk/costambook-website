@@ -1,3 +1,9 @@
+import {
+  AUTH_LOGOUT
+} from "../../store/actions/auth"
+// import router from "../../router/index"
+import store from "../../store"
+
 export default {
   name: 'home',
   components: {},
@@ -8,12 +14,16 @@ export default {
     }
   },
   computed: {
-
+    authenticated() {
+      return store.getters.isAuthenticated
+    }
   },
   mounted() {
 
   },
   methods: {
-
+    logout: function () {
+      store.dispatch(AUTH_LOGOUT)
+    }
   }
 }

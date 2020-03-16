@@ -19,7 +19,9 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-icon class="mx-3">fab fa-youtube</v-icon>
       <v-toolbar-title class="mr-5 align-center">
-        <span class="title">Costambook</span>
+        <router-link :to="{name: 'home'}">
+          <v-btn>Costambook</v-btn>
+        </router-link>
       </v-toolbar-title>
     </v-app-bar>
 
