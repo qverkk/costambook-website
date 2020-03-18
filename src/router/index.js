@@ -4,16 +4,25 @@ import login from "../components/login";
 import register from "../components/register";
 import Home from "../components/Home";
 import store from "../store/index"
+import User from "../components/User";
 
 Vue.use(Router);
 
 const ifNotAuthenticated = (to, from, next) => {
     if (!store.getters.isAuthenticated) {
-      next()
-      return
+        next()
+        return
     }
     next('/')
-  }
+}
+
+const ifAuthenticated = (to, from, next) => {
+    if (store.getters.isAuthenticated) {
+        next()
+        return
+    }
+    next('/')
+}
 
 const router = new Router({
     routes: [{
@@ -28,6 +37,13 @@ const router = new Router({
             component: register,
             name: "register",
             beforeEnter: ifNotAuthenticated
+        },
+        {
+            path: "/user/:id",
+            component: User,
+            props: true,
+            name: "user",
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/",

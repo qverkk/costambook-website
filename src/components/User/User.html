@@ -1,0 +1,23 @@
+<v-content fluid>
+  <v-layout align-center justify-center>
+    <v-flex>
+      <div>
+        <v-card class="elevation-3">
+          <v-toolbar>
+            <v-toolbar-title>User Info</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text v-if="user">
+            <p class="text--secondary">First name: {{user.firstName}}</p>
+            <p class="text--secondary">Last name: {{user.lastName}}</p>
+          </v-card-text>
+          <v-card-text v-else>
+            Loading user data
+          </v-card-text>
+        </v-card>
+      </div>
+      <div v-for="post in posts">
+        <Post :post="post" />
+      </div>
+    </v-flex>
+  </v-layout>
+</v-content>

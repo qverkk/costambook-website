@@ -8,6 +8,7 @@ import "material-design-icons-iconfont/dist/material-design-icons.css";
 Vue.config.productionTip = false;
 
 const token = localStorage.getItem("user-token");
+console.log("Token: " + token);
 if (token) {
   axios.defaults.headers.common['Authorization'] = token;
 
@@ -18,14 +19,19 @@ if (token) {
       }
     })
     .then((response) => {
+      console.log("Validating token")
+      console.log(response);
       if (!response.data) {
         localStorage.removeItem("user-token");
+        console.log("Token is not ok, removing")
+      } else {
+        console.log("Token is ok");
       }
-      console.log(response);
     })
     .catch((response) => {
-      localStorage.removeItem("user-token");
       console.log(response);
+      console.log("Error while validating token, removing");
+      localStorage.removeItem("user-token");
     });
 }
 

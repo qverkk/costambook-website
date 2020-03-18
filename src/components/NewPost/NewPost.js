@@ -38,13 +38,12 @@ export default {
         Axios.post("http://localhost:8090/posts", uploadImageData)
           .then((res) => {
             console.log(res);
+            this.uploadOk = true;
           })
-          .catch((res) => console.log(res))
-        // const fileReader = new FileReader();
-        // fileReader.readAsDataURL(this.choosenFile);
-        // fileReader.addEventListener("load", () => {
-        //   this.uploadPost(fileReader.result);
-        // });
+          .catch((res) => {
+            console.log(res);
+            this.uploadFailure = true;
+          })
       } else {
         const uploadImageData = new FormData();
         uploadImageData.append("imageFile", null);
@@ -52,8 +51,12 @@ export default {
         Axios.post("http://localhost:8090/posts", uploadImageData)
           .then((res) => {
             console.log(res);
+            this.uploadOk = true;
           })
-          .catch((res) => console.log(res))
+          .catch((res) => {
+            console.log(res);
+            this.uploadFailure = true;
+          })
       }
     },
     uploadPost(base64) {

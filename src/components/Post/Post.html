@@ -2,9 +2,13 @@
   <v-layout align-center justify-center>
     <v-flex xs12 sm8 md6>
       <v-card class="elevation-12">
-        <v-toolbar color="primary" dark flat height="50px">
-          <v-toolbar-title>{{post.user.username}}</v-toolbar-title>
-        </v-toolbar>
+        <router-link :to="{name: 'user', params: {id: post.user.userId}}">
+          <v-toolbar color="primary" dark flat height="50px">
+            <v-toolbar-title>
+              {{post.user.username}}
+            </v-toolbar-title>
+          </v-toolbar>
+        </router-link>
         <v-card-text>
           <img :src="image" class="scaled-image" />
           {{post.description}}
