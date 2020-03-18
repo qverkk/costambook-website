@@ -21,6 +21,7 @@ if (token) {
       if (!response.data) {
         localStorage.removeItem("user-token");
       }
+      console.log(response);
     })
     .catch((response) => {
       localStorage.removeItem("user-token");

@@ -32,13 +32,28 @@ export default {
       this.resetWarrnings();
 
       if (this.choosenFile != null) {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(this.choosenFile);
-        fileReader.addEventListener("load", () => {
-          this.uploadPost(fileReader.result);
-        });
+        const uploadImageData = new FormData();
+        uploadImageData.append("imageFile", this.choosenFile, this.choosenFile.name);
+        uploadImageData.append("description", this.description);
+        Axios.post("http://localhost:8090/posts", uploadImageData)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((res) => console.log(res))
+        // const fileReader = new FileReader();
+        // fileReader.readAsDataURL(this.choosenFile);
+        // fileReader.addEventListener("load", () => {
+        //   this.uploadPost(fileReader.result);
+        // });
       } else {
-        this.uploadPost(null)
+        const uploadImageData = new FormData();
+        uploadImageData.append("imageFile", null);
+        uploadImageData.append("description", this.description);
+        Axios.post("http://localhost:8090/posts", uploadImageData)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((res) => console.log(res))
       }
     },
     uploadPost(base64) {

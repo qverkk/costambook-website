@@ -75,6 +75,7 @@ const mutations = {
         state.status = "success";
         state.token = resp;
         state.hasLoadedOnce = true;
+        axios.defaults.headers.common['Authorization'] = resp;
     },
     [AUTH_ERROR]: state => {
         state.status = "error";

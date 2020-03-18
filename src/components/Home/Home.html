@@ -2,6 +2,9 @@
   <v-app>
     <div v-if="authenticated">
       <NewPost />
+      <div v-for="post in posts">
+        <Post :post="post" />
+      </div>
     </div>
     <div v-else>
       Please login to view content
