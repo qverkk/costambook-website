@@ -10,7 +10,17 @@
               hide-details
               inset
               label="Dark theme"
-            ></v-switch>
+            />
+            <div class="mobile">
+              <router-link to="login">
+                <v-btn block>Login</v-btn>
+              </router-link>
+            </div>
+            <div class="mobile">
+              <router-link to="register">
+                <v-btn block>Register</v-btn>
+              </router-link>
+            </div>
           </v-list-item-title>
         </v-list-item>
       </v-list>
@@ -25,12 +35,14 @@
       </v-toolbar-title>
       <v-spacer />
       <div v-if="!authenticated">
-        <router-link to="login">
-          <v-btn>Login</v-btn>
-        </router-link>
-        <router-link to="register">
-          <v-btn>Register</v-btn>
-        </router-link>
+        <div class="not-mobile">
+          <router-link to="login">
+            <v-btn>Login</v-btn>
+          </router-link>
+          <router-link to="register">
+            <v-btn>Register</v-btn>
+          </router-link>
+        </div>
       </div>
       <div v-else>
         <v-btn @click="logout">Logout</v-btn>
@@ -71,5 +83,24 @@ export default {
 <style scoped>
 .theme-settings {
   padding: 20px;
+}
+
+.not-mobile {
+  display: inline;
+}
+
+.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 437px) {
+  .not-mobile {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+    padding-top: 10px;
+  }
 }
 </style>
