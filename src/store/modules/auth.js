@@ -11,19 +11,20 @@ import axios from "axios";
 
 const state = {
     token: localStorage.getItem("user-token") || "",
+    userId: localStorage.getItem("userId") || "",
     status: "",
     hasLoadedOnce: false
 };
 
 const getters = {
     isAuthenticated: state => !!state.token,
-    authStatus: state => state.status
+    authStatus: state => state.status,
+    userId: state => state.userId
 };
 
 const actions = {
     [AUTH_REQUEST]: ({
-        commit,
-        // dispatch
+        commit
     }, user) => {
         return new Promise((resolve, reject) => {
             commit(AUTH_REQUEST);
@@ -36,21 +37,24 @@ const actions = {
                     }
                 })
                 .then((resp) => {
+                    const userId = resp.data.userId
                     const token = resp.data.token
                     if (token) {
-                        localStorage.setItem("user-token", token) // store the token in localstorage
-                        commit(AUTH_SUCCESS, token)
+                        localStorage.setItem("userId", userId)
+                        localStorage.setItem("user-token", token)
+                        commit(AUTH_SUCCESS, {
+                            token: token,
+                            userId: userId
+                        })
                     } else {
                         commit(AUTH_ERROR);
                     }
-                    // you have your token, now log in your user :)
-                    // dispatch(USER_REQUEST)
                     resolve(resp)
                 })
                 .catch((err) => {
-                    console.log("remove token");
                     commit(AUTH_ERROR, err)
-                    localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
+                    localStorage.removeItem("userId")
+                    localStorage.removeItem('user-token')
                     reject(err)
                 })
         });
@@ -59,8 +63,8 @@ const actions = {
         commit
     }) => {
         return new Promise(resolve => {
-            console.log("remove token");
             commit(AUTH_LOGOUT);
+            localStorage.removeItem("userId")
             localStorage.removeItem("user-token");
             resolve();
         });
@@ -73,9 +77,10 @@ const mutations = {
     },
     [AUTH_SUCCESS]: (state, resp) => {
         state.status = "success";
-        state.token = resp;
+        state.token = resp.token;
+        state.userId = resp.userId;
         state.hasLoadedOnce = true;
-        axios.defaults.headers.common['Authorization'] = resp;
+        axios.defaults.headers.common['Authorization'] = resp.token;
     },
     [AUTH_ERROR]: state => {
         state.status = "error";
@@ -83,6 +88,7 @@ const mutations = {
     },
     [AUTH_LOGOUT]: state => {
         state.token = "";
+        state.userId = "";
     }
 };
 

@@ -19,18 +19,13 @@ if (token) {
       }
     })
     .then((response) => {
-      console.log("Validating token")
-      console.log(response);
       if (!response.data) {
         localStorage.removeItem("user-token");
-        console.log("Token is not ok, removing")
-      } else {
-        console.log("Token is ok");
+        localStorage.removeItem("userId")
       }
     })
-    .catch((response) => {
-      console.log(response);
-      console.log("Error while validating token, removing");
+    .catch(() => {
+      localStorage.removeItem("userId")
       localStorage.removeItem("user-token");
     });
 }

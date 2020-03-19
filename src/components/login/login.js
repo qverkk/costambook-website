@@ -45,26 +45,6 @@ export default {
             })
           }
         });
-      /*axios
-        .post("http://localhost:8090/user/login", data, {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-        .then((response) => {
-          if (response.data == "User doesn't exist") {
-            self.userExists = false;
-          } else if (response.data == "Password doesn't match") {
-            self.passwordDoesntMatch = true;
-          }
-          console.log(response);
-          let token = response.data.token;
-          localStorage.setItem("user-token", token);
-        })
-        .catch((response) => {
-          localStorage.removeItem("user-token")
-          console.log(response);
-        });*/
     }
   }
 };
