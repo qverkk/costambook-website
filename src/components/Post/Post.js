@@ -19,7 +19,8 @@ export default {
       dislikes: 0,
       showComments: false,
       comments: [],
-      commentText: "Show comments"
+      commentText: "Show comments",
+      lazyImg: "https://picsum.photos/id/11/100/60"
     }
   },
   created() {
@@ -62,6 +63,8 @@ export default {
     dataUrl() {
       if (this.post.image != null) {
         this.image = "data:image/jpeg;base64," + this.post.image
+      } else {
+        this.lazyImg = null;
       }
     },
     fetchLikes() {

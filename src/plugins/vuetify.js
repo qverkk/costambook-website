@@ -17,7 +17,8 @@ import Vuetify, {
     VAlert,
     VTextarea,
     VFileInput,
-    VDivider
+    VDivider,
+    VImg
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -39,7 +40,8 @@ Vue.use(Vuetify, {
         VAlert,
         VTextarea,
         VFileInput,
-        VDivider
+        VDivider,
+        VImg
     }
 });
 
