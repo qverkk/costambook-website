@@ -1,0 +1,17 @@
+<v-container fluid>
+  <v-card>
+    <v-card-text>
+      <router-link :to="{name: 'user', params: {id: comment.userId}}">
+        <v-btn outlined block>
+          {{comment.username}}
+        </v-btn>
+      </router-link>
+      <div>
+        {{date}}
+      </div>
+      <div>
+        <v-textarea rows=1 disabled outlined :value="comment.text" />
+      </div>
+    </v-card-text>
+  </v-card>
+</v-container>

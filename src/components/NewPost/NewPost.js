@@ -28,6 +28,11 @@ export default {
       this.uploadOk = false;
       this.uploadFailure = false;
     },
+    resetAndEmit() {
+      this.choosenFile = null;
+      this.description = "";
+      this.$emit("posted");
+    },
     createPost() {
       this.resetWarrnings();
 
@@ -52,6 +57,7 @@ export default {
           .then((res) => {
             console.log(res);
             this.uploadOk = true;
+            this.resetAndEmit();
           })
           .catch((res) => {
             console.log(res);

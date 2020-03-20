@@ -25,12 +25,18 @@
             </v-btn>
           </v-flex>
           <v-flex fluid>
-            <v-btn class="primary post-button" block>
-              Comment
+            <v-btn class="primary post-button" block @click="toggleComments">
+              {{commentText}}
             </v-btn>
           </v-flex>
         </v-card-actions>
       </v-card>
+      <div v-if="showComments">
+        <NewComment :postId="post.postId" @posted="fetchComments" />
+        <div v-for="comment in comments">
+          <Comment :comment="comment" />
+        </div>
+      </div>
     </v-flex>
   </v-layout>
 </v-container>

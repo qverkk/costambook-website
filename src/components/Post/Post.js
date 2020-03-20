@@ -1,9 +1,14 @@
 import Axios from "axios"
 import store from "../../store"
+import Comment from "../Comments/Comment"
+import NewComment from "../Comments/NewComment"
 
 export default {
   name: 'post',
-  components: {},
+  components: {
+    Comment,
+    NewComment
+  },
   props: [
     "post"
   ],
@@ -11,12 +16,16 @@ export default {
     return {
       image: "",
       likes: 0,
-      dislikes: 0
+      dislikes: 0,
+      showComments: false,
+      comments: [],
+      commentText: "Show comments"
     }
   },
   created() {
     this.dataUrl();
     this.fetchLikes();
+    this.fetchComments();
   },
   computed: {
     userId() {
@@ -27,6 +36,29 @@ export default {
 
   },
   methods: {
+    toggleComments() {
+      this.showComments = !this.showComments;
+      if (this.showComments) {
+        this.fetchComments();
+        this.commentText = "Hide comments";
+      } else {
+        this.commentText = "Show comments";
+      }
+    },
+    fetchComments() {
+      Axios.get("http://localhost:8090/comments", {
+          params: {
+            postId: this.post.postId
+          }
+        })
+        .then((res) => {
+          console.log(res)
+          this.comments = res.data;
+        })
+        .catch((res) => {
+          console.log(res)
+        })
+    },
     dataUrl() {
       if (this.post.image != null) {
         this.image = "data:image/jpeg;base64," + this.post.image

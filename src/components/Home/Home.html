@@ -1,7 +1,7 @@
 <v-content>
   <v-app>
     <div v-if="authenticated">
-      <NewPost />
+      <NewPost @posted="fetchPosts" />
       <div v-for="post in posts">
         <Post :post="post" />
       </div>

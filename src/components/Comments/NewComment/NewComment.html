@@ -1,0 +1,13 @@
+<v-container fluid>
+  <v-card>
+    <v-card-text>
+      Add a new post<br />
+      <v-textarea v-model="comment" filled auto-grow rows=1 />
+    </v-card-text>
+    <v-card-actions>
+      <v-btn block @click="addNewComment">
+        Post
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-container>
