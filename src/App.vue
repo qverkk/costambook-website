@@ -11,15 +11,17 @@
               inset
               label="Dark theme"
             />
-            <div class="mobile">
-              <router-link to="login">
-                <v-btn block>Login</v-btn>
-              </router-link>
-            </div>
-            <div class="mobile">
-              <router-link to="register">
-                <v-btn block>Register</v-btn>
-              </router-link>
+            <div v-if="!authenticated">
+              <div class="mobile">
+                <router-link to="login">
+                  <v-btn block>Login</v-btn>
+                </router-link>
+              </div>
+              <div class="mobile">
+                <router-link to="register">
+                  <v-btn block>Register</v-btn>
+                </router-link>
+              </div>
             </div>
           </v-list-item-title>
         </v-list-item>
