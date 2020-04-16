@@ -20,21 +20,26 @@
           {{post.description}}
         </v-card-text>
         <v-card-actions>
-          <v-flex fluid>
+          <v-flex fluid class="like-button">
             <v-btn class="primary post-button" block @click="like">
               {{likes}} Like
             </v-btn>
           </v-flex>
-          <v-flex fluid>
+          <v-flex fluid class="dislike-button">
             <v-btn class="primary post-button" block @click="dislike">
               {{dislikes}} Dislike
             </v-btn>
           </v-flex>
-          <v-flex fluid>
+          <v-flex fluid class="triple-button-comments">
             <v-btn class="primary post-button" block @click="toggleComments">
               {{commentText}}
             </v-btn>
           </v-flex>
+        </v-card-actions>
+        <v-card-actions class="new-row-comments">
+          <v-btn class="primary post-button" block @click="toggleComments">
+            {{commentText}}
+          </v-btn>
         </v-card-actions>
       </v-card>
       <div v-if="showComments">

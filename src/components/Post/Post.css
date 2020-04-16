@@ -4,3 +4,33 @@
     object-fit: scale-down;
     overflow: hidden;
 }
+
+.new-row-comments {
+    display: none;
+}
+
+.triple-button-comments,
+.like-button,
+.dislike-button {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+@media screen and (max-width: 440px) {
+    .new-row-comments {
+        display: block;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .triple-button-comments {
+        display: none;
+    }
+
+    .like-button,
+    .dislike-button {
+        width: 50%;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}
